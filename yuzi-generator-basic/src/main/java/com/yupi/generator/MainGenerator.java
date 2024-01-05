@@ -1,24 +1,17 @@
 package com.yupi.generator;
 
-import com.yupi.model.MainTemplateConfig;
-import freemarker.template.TemplateException;
+import lombok.SneakyThrows;
 
 import java.io.File;
-import java.io.IOException;
 
 /**
  * 核心生成器
  */
 public class MainGenerator {
 
-    /**
-     * 生成
-     * 
-     * @param model 数据模型
-     * @throws TemplateException
-     * @throws IOException
-     */
-    public static void doGenerate(Object model) throws TemplateException, IOException {
+
+    @SneakyThrows
+    public static void doGenerate(Object model) {
         String projectPath = System.getProperty("user.dir");
         // 整个项目的根路径
         File parentFile = new File(projectPath).getParentFile();
@@ -33,11 +26,5 @@ public class MainGenerator {
         DynamicGenerator.doGenerate(inputDynamicFilePath, outputDynamicFilePath, model);
     }
 
-    public static void main(String[] args) throws TemplateException, IOException {
-        MainTemplateConfig mainTemplateConfig = new MainTemplateConfig();
-        mainTemplateConfig.setAuthor("jjjjiejie");
-        mainTemplateConfig.setLoop(false);
-        mainTemplateConfig.setOutputText("求和结果：");
-        doGenerate(mainTemplateConfig);
-    }
+
 }
